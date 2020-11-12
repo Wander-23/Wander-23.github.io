@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Node学习API中的遇到的问题（一）, Wander">
+    <meta name="keywords" content="mongoimport导入json文件报错, Wander">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Node学习API中的遇到的问题（一） | Wander</title>
+    <title>mongoimport导入json文件报错 | Wander</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Node学习API中的遇到的问题（一）</h1>
+                    <h1 class="description center-align post-title">mongoimport导入json文件报错</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-11-13
                 </div>
                 
 
@@ -460,24 +460,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="url模块的解析链接地址"><a href="#url模块的解析链接地址" class="headerlink" title="url模块的解析链接地址"></a>url模块的解析链接地址</h1><h2 id="1-传统的解析方式-使用url-parse"><a href="#1-传统的解析方式-使用url-parse" class="headerlink" title="1.传统的解析方式,使用url.parse()"></a>1.传统的解析方式,使用url.parse()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = http.createServer();</span><br><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">&quot;url&quot;</span>);</span><br><span class="line"><span class="comment">//监听请求</span></span><br><span class="line"><span class="comment">//http://localhost:3000/index?username=Wander&amp;password=123</span></span><br><span class="line">app.on(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">    <span class="string">&quot;content-type&quot;</span>: <span class="string">&quot;text/plain;charset=utf8&quot;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">let</span> params = url.parse(req.url, <span class="literal">true</span>).query;</span><br><span class="line">  <span class="built_in">console</span>.log(params);</span><br><span class="line">  res.end(<span class="string">`</span></span><br><span class="line"><span class="string">  传过来的username是\&quot;<span class="subst">$&#123;params.username&#125;</span>\&quot;,</span></span><br><span class="line"><span class="string">  传过来的password是\&quot;<span class="subst">$&#123;params.password&#125;</span>\&quot;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//监听3000端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Your need open http://localhost:3000&quot;</span>);</span><br></pre></td></tr></table></figure>
+                <h1 id="尝试mongoimport-导入json文件报错"><a href="#尝试mongoimport-导入json文件报错" class="headerlink" title="尝试mongoimport 导入json文件报错"></a>尝试mongoimport 导入json文件报错</h1><p>user.json如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;路飞&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;age&quot;</span>: <span class="string">&quot;21&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hobbies&quot;</span>: [<span class="string">&quot;当海贼王&quot;</span>,<span class="string">&quot;吃大肘子&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;email&quot;</span>: <span class="string">&quot;lufei@qq.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;password&quot;</span>: <span class="string">&quot;lufei&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;琦玉&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;age&quot;</span>: <span class="string">&quot;20&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;hobbies&quot;</span>: [<span class="string">&quot;当英雄&quot;</span>],</span><br><span class="line">    <span class="attr">&quot;email&quot;</span>: <span class="string">&quot;qiyu@qq.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;password&quot;</span>: <span class="string">&quot;qiyu&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
 
-<p>这里可以通过解析后调用query方法获得params，如下图：</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/BvTt8e"><img src="https://s3.ax1x.com/2020/11/12/BvTt8e.png" alt="url.png"></a></p>
-<p>上面的写法在废弃于11.0.0的版本，几乎require(“url”)这种传统写法的方法都被废弃</p>
-<hr>
-<h2 id="2-WHATWG-接口，新写法"><a href="#2-WHATWG-接口，新写法" class="headerlink" title="2. WHATWG 接口，新写法"></a>2. WHATWG 接口，新写法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = http.createServer();</span><br><span class="line"><span class="comment">//监听请求</span></span><br><span class="line"><span class="comment">//http://localhost:3000/index?username=Wander&amp;password=123</span></span><br><span class="line">app.on(<span class="string">&quot;request&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">    <span class="string">&quot;content-type&quot;</span>: <span class="string">&quot;text/plain;charset=utf8&quot;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">    <span class="comment">//req.url=&quot;/index?username=Wander&amp;password=123&quot;</span></span><br><span class="line">  <span class="keyword">let</span> params = <span class="keyword">new</span> URL(req.url, <span class="string">&quot;http://localhost:3000/index&quot;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(params);</span><br><span class="line">  <span class="keyword">const</span> username = params.searchParams.get(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> password = params.searchParams.get(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">  res.end(<span class="string">`</span></span><br><span class="line"><span class="string">  传过来的username是\&quot;<span class="subst">$&#123;username&#125;</span>\&quot;,</span></span><br><span class="line"><span class="string">  传过来的password是\&quot;<span class="subst">$&#123;password&#125;</span>\&quot;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//监听3000端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Your need open http://localhost:3000&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用如下命令导入json文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoimport -d playground -c users --file ./user.json</span><br></pre></td></tr></table></figure>
 
-<p>传过来的params，如下图：</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/BvTlHx"><img src="https://s3.ax1x.com/2020/11/12/BvTlHx.png" alt="newUrl.png"></a></p>
-<p>上图中的searchParams需要通过get,set,delet等方法来操作。</p>
-<hr>
-<p>new URL(input[, base])</p>
-<ul>
-<li><code>input</code> 要解析的绝对或相对的 URL。如果 <code>input</code> 是相对路径，则需要 <code>base</code>。 如果 <code>input</code> 是绝对路径，则忽略 <code>base</code>。</li>
-<li><code>base</code>如果 <code>input</code> 不是绝对路径，则为要解析的基本 URL。</li>
-</ul>
-<p>详细可以查看官方文档<a target="_blank" rel="noopener" href="http://nodejs.cn/api/url.html#url_class_urlsearchparams">http://nodejs.cn/api/url.html#url_class_urlsearchparams</a>来看</p>
+<p>报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connected to: mongodb:&#x2F;&#x2F;localhost&#x2F;</span><br><span class="line">Failed: cannot decode array into a D</span><br><span class="line">0 document(s) imported successfully. 0 document(s) failed to import.</span><br></pre></td></tr></table></figure>
+
+<p>当json是一个数组的时候，导入报错，使用参数可以改成以下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoimport -d playground -c users --jsonArray ./user.json</span><br></pre></td></tr></table></figure>
+
 
             </div>
             <hr/>
@@ -503,7 +497,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wander-23.github.io/2020/11/12/Node%E5%AD%A6%E4%B9%A0API%E4%B8%AD%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/">https://wander-23.github.io/2020/11/12/Node%E5%AD%A6%E4%B9%A0API%E4%B8%AD%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/</a>
+                    <a href="https://wander-23.github.io/2020/11/13/mongoimport%E5%AF%BC%E5%85%A5json%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">https://wander-23.github.io/2020/11/13/mongoimport%E5%AF%BC%E5%85%A5json%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -708,9 +702,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/11/13/mongoimport%E5%AF%BC%E5%85%A5json%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
                     <div class="card-image">
@@ -728,9 +723,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -739,6 +734,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -746,7 +742,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/11/12/Node%E5%AD%A6%E4%B9%A0API%E4%B8%AD%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/">
@@ -776,7 +772,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
